@@ -64,16 +64,19 @@ public class Course {
      * ManyToMany - instructor_courses
      * Anotacion @ManyToMany
      * Anotacion @JoinTable - Define el nombre de la tabla pivote/intermedia
-     *  joinColumns = Define el nombre del atributo de la entidad padre en la tabla intermedia
-     *  inverseJoinColumns = Define el nombre del atributo de la entidad inversa
+     * joinColumns = Define el nombre del atributo de la entidad padre en la tabla intermedia
+     * inverseJoinColumns = Define el nombre del atributo de la entidad inversa
      */
     @ManyToMany
     @JoinTable(
             name = "instructors_courses",
             joinColumns = @JoinColumn(name = "id_course"),
-            inverseJoinColumns =  @JoinColumn(name = "id_instructor")
+            inverseJoinColumns = @JoinColumn(name = "id_instructor")
     )
     private List<Instructor> instructors = new ArrayList<>();
+
+    @OneToMany(mappedBy = "course")
+    private List<Module> module;
 
 }
 
