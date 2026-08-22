@@ -15,13 +15,46 @@ import java.util.List;
 public class Main {
     public static void main(String[] args) {
 
-        var categoryDao = new CategoryDao();
-        List<Integer> categoriesToDelete = List.of(12, 13);
+        /**
+         * Visualizacion ManyToMany Instructor - Courses
+         */
 
-        for (Integer id : categoriesToDelete) {
-            var category = categoryDao.findById(id);
-            if (category != null) {
-                categoryDao.delete(category);
+        var courseDao = new CourseDao();
+
+        System.out.println("=== Cursos de mi sistema ===");
+        var allCourses = courseDao.findAll();
+
+        // SELECT count(*) from Courses
+        var totalCursos = allCourses.size();
+
+        for (var course : allCourses) {
+            System.out.println("*** Curso: " + course.getTitle());
+            var instructorsByCourse = course.getInstructors();
+            System.out.println("=== Instructores del curso ===");
+            for (var instructor : instructorsByCourse) {
+                System.out.println("=====================================");
+                System.out.println("Nombre: " + instructor.getFirstName());
+                System.out.println("Apellidos: " + instructor.getLastName());
+                System.out.println("Email: " + instructor.getEmail());
+                System.out.println("Especialidad: " + instructor.getSpeciality());
+                System.out.println("=====================================");
+            }
+        }
+
+        var instructorDao = new InstructorDao();
+
+        var allInstructors = instructorDao.findAll();
+
+        for (var instructor : allInstructors) {
+            System.out.println("*** Instructor: " + instructor.getFirstName() + " " + instructor.getLastName());
+
+            var coursesByInstructor = instructor.getCourses();
+            System.out.println("=== Courses del instructor ===");
+            for (var course : coursesByInstructor) {
+                System.out.println("====================================");
+                System.out.println("Nombre: " + course.getTitle());
+                System.out.println("Descripcion: " + course.getDescription());
+                System.out.println("====================================");
             }
         }
 
@@ -29,6 +62,28 @@ public class Main {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+        /*var categoryDao = new CategoryDao();
+        List<Integer> categoriesToDelete = List.of(12, 13);
+
+        for (Integer id : categoriesToDelete) {
+            var category = categoryDao.findById(id);
+            if (category != null) {
+                categoryDao.delete(category);
+            }
+        }*/
         /*CourseDao courseDao = new CourseDao();
         Course miCurso = courseDao.findById(1);
         System.out.println("==== Mi curso " + miCurso.getTitle());

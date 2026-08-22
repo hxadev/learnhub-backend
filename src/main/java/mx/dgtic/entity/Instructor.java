@@ -44,5 +44,11 @@ public class Instructor {
     @Column(name = "created_at")
     private Date createdAt;
 
+    /**
+     * @ManyToMany mappedBy = nombre del atributo que mapea la relación en la otra entidad (Course)
+     */
+    @ManyToMany(mappedBy = "instructors")
+    private List<Course> courses;
+
 }
 

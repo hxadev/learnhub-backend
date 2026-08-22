@@ -4,7 +4,9 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Pojo Course
@@ -57,6 +59,21 @@ public class Course {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "category_id") // INNER JOIN
     private Category category;
+
+    /**
+     * ManyToMany - instructor_courses
+     * Anotacion @ManyToMany
+     * Anotacion @JoinTable - Define el nombre de la tabla pivote/intermedia
+     *  joinColumns = Define el nombre del atributo de la entidad padre en la tabla intermedia
+     *  inverseJoinColumns = Define el nombre del atributo de la entidad inversa
+     */
+    @ManyToMany
+    @JoinTable(
+            name = "instructors_courses",
+            joinColumns = @JoinColumn(name = "id_course"),
+            inverseJoinColumns =  @JoinColumn(name = "id_instructor")
+    )
+    private List<Instructor> instructors = new ArrayList<>();
 
 }
 
