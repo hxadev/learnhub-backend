@@ -15,17 +15,59 @@ import java.util.List;
 public class Main {
     public static void main(String[] args) {
 
+        // Asignar un profesor a un curso
+        var courseDao = new CourseDao();
+        var instructorDao = new InstructorDao();
+        var studentDao = new StudentDao();
+
+        courseDao.findAll().size();
+        studentDao.findAll().size();
+
+        var course = courseDao.findById(1);
+
+        var instructor = instructorDao.findById("INS-002");
+
+        course.getInstructors().add(instructor);
+        course.getInstructors().remove(instructorDao.findById("INS-001"));
+
+        courseDao.update(course);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         /**
          * Visualizacion ManyToMany Instructor - Courses
          */
 
-        var courseDao = new CourseDao();
+        /*var courseDao = new CourseDao();
 
         System.out.println("=== Cursos de mi sistema ===");
         var allCourses = courseDao.findAll();
 
         // SELECT count(*) from Courses
-        var totalCursos = allCourses.size();
+        var totalCursos = allCourses.size();*/
 
         /*for (var course : allCourses) {
             System.out.println("*** Curso: " + course.getTitle());
