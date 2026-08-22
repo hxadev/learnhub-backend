@@ -5,6 +5,7 @@ package mx.dgtic;
 
 import mx.dgtic.dao.*;
 import mx.dgtic.entity.Category;
+import mx.dgtic.entity.Course;
 import mx.dgtic.entity.Instructor;
 import mx.dgtic.entity.Student;
 
@@ -14,17 +15,50 @@ import java.util.List;
 public class Main {
     public static void main(String[] args) {
 
-        // Category
         var categoryDao = new CategoryDao();
-        // Busca todas las categorias
-        var allCategories = categoryDao.findAll();
+        List<Integer> categoriesToDelete = List.of(12, 13);
 
-        var category = categoryDao.findById(1);
+        for (Integer id : categoriesToDelete) {
+            var category = categoryDao.findById(id);
+            if (category != null) {
+                categoryDao.delete(category);
+            }
+        }
+
+
+
+
+
+        /*CourseDao courseDao = new CourseDao();
+        Course miCurso = courseDao.findById(1);
+        System.out.println("==== Mi curso " + miCurso.getTitle());
+
+        Category categoriaCurso = miCurso.getCategory();
+        System.out.println("==== Categoria del curso " + categoriaCurso.getName());
+        */
+
+        // Category
+        //var categoryDao = new CategoryDao();
+        // Busca todas las categorias
+        //var allCategories = categoryDao.findAll();
+
+        /*var category = categoryDao.findById(1);
         System.out.println("==== Category: " + category.getName() + "=====");
         System.out.println("==== Courses: " + category.getCourses().size() + "=====");
         category.getCourses().forEach(course -> {
             System.out.println(course.getTitle());
-        });
+        });*/
+
+
+        /*allCategories.forEach(category -> {
+            var courses = category.getCourses();
+            System.out.println("=========== Category: " + category.getName() + " , Courses: " + courses.size()+"===========");
+            courses.forEach(course -> {
+                System.out.println("Course: " + course.getTitle());
+            });
+        });*/
+
+
         // select  from courses join categories on categor....
 
         /*var instructorDao = new InstructorDao();

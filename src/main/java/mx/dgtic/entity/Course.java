@@ -47,8 +47,16 @@ public class Course {
     @Column
     private Short ranking;
 
-    @ManyToOne
-    @JoinColumn(name = "category_id")
+    /*
+        LAZY = -> getCategory() -> SELECT * FROM Categories
+
+        EAGER = -> new Course() -> SELECT * FROM Courses INNER JOIN Categories ON .. INNER JOIN Level ON INNER JOIN Ranking ON ...
+        Courses + Categories + Level + Ranking + =====> N+1 => Low Performance
+     */
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "category_id") // INNER JOIN
     private Category category;
+
 }
 
