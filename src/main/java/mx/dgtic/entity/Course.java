@@ -78,5 +78,9 @@ public class Course {
     @OneToMany(mappedBy = "course")
     private List<Module> module;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "level_id", nullable = false)
+    private Level level;
+
 }
 

@@ -27,7 +27,7 @@ public class Main {
         // SELECT count(*) from Courses
         var totalCursos = allCourses.size();
 
-        for (var course : allCourses) {
+        /*for (var course : allCourses) {
             System.out.println("*** Curso: " + course.getTitle());
             var instructorsByCourse = course.getInstructors();
             System.out.println("=== Instructores del curso ===");
@@ -56,7 +56,7 @@ public class Main {
                 System.out.println("Descripcion: " + course.getDescription());
                 System.out.println("====================================");
             }
-        }
+        }*/
 
 
 

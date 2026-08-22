@@ -31,5 +31,7 @@ public class Level {
     @Column
     private boolean active;
 
+    @OneToMany(mappedBy = "level")
+    private List<Course> courses = new ArrayList<>();
 
 }
