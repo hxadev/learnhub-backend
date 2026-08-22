@@ -82,5 +82,8 @@ public class Course {
     @JoinColumn(name = "level_id", nullable = false)
     private Level level;
 
+    @OneToMany(mappedBy="course")
+    private List<Enrollment> enrollments;
+
 }
 
