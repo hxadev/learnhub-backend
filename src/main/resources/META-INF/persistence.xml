@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="https://jakarta.ee/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="https://jakarta.ee/xml/ns/persistence
+             https://jakarta.ee/xml/ns/persistence/persistence_3_1.xsd"
+             version="3.1">
+
+    <persistence-unit name="learnhubPU" transaction-type="RESOURCE_LOCAL">
+        <properties>
+            <!-- Conexión a MariaDB -->
+            <property name="jakarta.persistence.jdbc.url"
+                      value="jdbc:mariadb://localhost:3307/learnhub"/>
+            <property name="jakarta.persistence.jdbc.user"
+                      value="lh_dev"/>
+            <property name="jakarta.persistence.jdbc.password"
+                      value="dev1234"/>
+            <property name="jakarta.persistence.jdbc.driver"
+                      value="org.mariadb.jdbc.Driver"/>
+
+            <!-- Hibernate Config -->
+            <property name="hibernate.dialect"
+                      value="org.hibernate.dialect.MariaDBDialect"/>
+            <property name="hibernate.hbm2ddl.auto"
+                      value="update"/>
+            <property name="hibernate.show_sql"
+                      value="true"/>
+            <property name="hibernate.format_sql"
+                      value="true"/>
+            <property name="hibernate.highlight_sql"
+                      value="true"/>
+        </properties>
+    </persistence-unit>
+</persistence>
