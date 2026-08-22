@@ -19,6 +19,11 @@ import java.util.List;
 @AllArgsConstructor
 public class Course {
 
+    public Course(int id, String title) {
+        this.id = id;
+        this.title = title;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;

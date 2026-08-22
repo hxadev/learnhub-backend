@@ -8,6 +8,8 @@ import mx.dgtic.entity.Category;
 import mx.dgtic.entity.Course;
 import mx.dgtic.entity.Instructor;
 import mx.dgtic.entity.Student;
+import mx.dgtic.repository.CategoryRepository;
+import mx.dgtic.repository.CourseRepository;
 
 import java.util.Date;
 import java.util.List;
@@ -15,164 +17,25 @@ import java.util.List;
 public class Main {
     public static void main(String[] args) {
 
-        // Asignar un profesor a un curso
-        var courseDao = new CourseDao();
-        var instructorDao = new InstructorDao();
-        var studentDao = new StudentDao();
+        CourseRepository courseRepository = new CourseRepository();
 
-        courseDao.findAll().size();
-        studentDao.findAll().size();
+        var coursesByCategory = courseRepository.findByCategoryName("Programacion");
 
-        var course = courseDao.findById(1);
+        coursesByCategory.size();
 
-        var instructor = instructorDao.findById("INS-002");
+        var categoryDao = new CategoryRepository();
+        var activeCategories = categoryDao.getActiveCategories();
 
-        course.getInstructors().add(instructor);
-        course.getInstructors().remove(instructorDao.findById("INS-001"));
+        System.out.println("El total de categorias activas es: " + activeCategories);
 
-        courseDao.update(course);
+        var totalCategories = categoryDao.getTotalCategories();
+        System.out.println("El total de categorias es: " + totalCategories);
 
 
+        //CourseDao courseDao = new CourseDao();
+        //var miCurso = courseDao.findCourseTitleById(1);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        /**
-         * Visualizacion ManyToMany Instructor - Courses
-         */
-
-        /*var courseDao = new CourseDao();
-
-        System.out.println("=== Cursos de mi sistema ===");
-        var allCourses = courseDao.findAll();
-
-        // SELECT count(*) from Courses
-        var totalCursos = allCourses.size();*/
-
-        /*for (var course : allCourses) {
-            System.out.println("*** Curso: " + course.getTitle());
-            var instructorsByCourse = course.getInstructors();
-            System.out.println("=== Instructores del curso ===");
-            for (var instructor : instructorsByCourse) {
-                System.out.println("=====================================");
-                System.out.println("Nombre: " + instructor.getFirstName());
-                System.out.println("Apellidos: " + instructor.getLastName());
-                System.out.println("Email: " + instructor.getEmail());
-                System.out.println("Especialidad: " + instructor.getSpeciality());
-                System.out.println("=====================================");
-            }
-        }
-
-        var instructorDao = new InstructorDao();
-
-        var allInstructors = instructorDao.findAll();
-
-        for (var instructor : allInstructors) {
-            System.out.println("*** Instructor: " + instructor.getFirstName() + " " + instructor.getLastName());
-
-            var coursesByInstructor = instructor.getCourses();
-            System.out.println("=== Courses del instructor ===");
-            for (var course : coursesByInstructor) {
-                System.out.println("====================================");
-                System.out.println("Nombre: " + course.getTitle());
-                System.out.println("Descripcion: " + course.getDescription());
-                System.out.println("====================================");
-            }
-        }*/
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        /*var categoryDao = new CategoryDao();
-        List<Integer> categoriesToDelete = List.of(12, 13);
-
-        for (Integer id : categoriesToDelete) {
-            var category = categoryDao.findById(id);
-            if (category != null) {
-                categoryDao.delete(category);
-            }
-        }*/
-        /*CourseDao courseDao = new CourseDao();
-        Course miCurso = courseDao.findById(1);
-        System.out.println("==== Mi curso " + miCurso.getTitle());
-
-        Category categoriaCurso = miCurso.getCategory();
-        System.out.println("==== Categoria del curso " + categoriaCurso.getName());
-        */
-
-        // Category
-        //var categoryDao = new CategoryDao();
-        // Busca todas las categorias
-        //var allCategories = categoryDao.findAll();
-
-        /*var category = categoryDao.findById(1);
-        System.out.println("==== Category: " + category.getName() + "=====");
-        System.out.println("==== Courses: " + category.getCourses().size() + "=====");
-        category.getCourses().forEach(course -> {
-            System.out.println(course.getTitle());
-        });*/
-
-
-        /*allCategories.forEach(category -> {
-            var courses = category.getCourses();
-            System.out.println("=========== Category: " + category.getName() + " , Courses: " + courses.size()+"===========");
-            courses.forEach(course -> {
-                System.out.println("Course: " + course.getTitle());
-            });
-        });*/
-
-
-        // select  from courses join categories on categor....
-
-        /*var instructorDao = new InstructorDao();
-        instructorDao.findAll();
-
-        var levelDao = new LevelDao();
-        levelDao.findAll();
-
-        var studentDao = new StudentDao();
-        studentDao.findAll();
-
-        var courseDao = new CourseDao();
-        var allCourses = courseDao.findAll();
-
-        allCourses.forEach(course -> {
-            System.out.println(course);
-        });*/
+        // System.out.println("Curso: " + miCurso.getTitle());
     }
 
     /*private static void crudCategory(){

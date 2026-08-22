@@ -9,7 +9,7 @@ import java.util.List;
 
 public class CourseDao implements LearnHubDao<Course> {
 
-    private final EntityManager entityManager;
+    protected final EntityManager entityManager;
 
     public CourseDao() {
         entityManager = HibernateUtil.getInstance().createEntityManager();
@@ -66,8 +66,9 @@ public class CourseDao implements LearnHubDao<Course> {
     }
 
     @Override
-    public List<Course> findAll() {
+    public List<Course> findAll() { // select c.* from courses c
         return entityManager.createQuery("SELECT c FROM Course c", Course.class).getResultList();
     }
+
 }
 

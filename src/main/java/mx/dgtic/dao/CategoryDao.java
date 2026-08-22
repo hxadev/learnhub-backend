@@ -11,7 +11,7 @@ import java.util.List;
 
 public class CategoryDao implements LearnHubDao<Category> {
     // Connection o Persistence Unit
-    private final EntityManager entityManager;
+    protected final EntityManager entityManager;
 
     public CategoryDao() {
         entityManager = HibernateUtil.getInstance().createEntityManager();

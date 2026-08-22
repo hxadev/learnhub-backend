@@ -17,6 +17,11 @@ import java.util.List;
 @NoArgsConstructor // Category()
 @AllArgsConstructor // Category(...)
 @ToString // toString()
+@NamedQueries({
+        // <K, V>
+        @NamedQuery(name = "Category.getTotalCategories", query = "SELECT COUNT(c) FROM Category c"),
+        @NamedQuery(name = "Category.getActiveCategories", query = "SELECT COUNT(c) FROM Category c WHERE c.active = true"),
+})
 public class Category {
     // atributos encapsulados
     @Id
