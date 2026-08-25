@@ -9,7 +9,7 @@ import java.util.List;
 
 public class EnrollmentDao implements LearnHubDao<Enrollment> {
 
-    private final EntityManager entityManager;
+    protected final EntityManager entityManager;
 
     public EnrollmentDao() {
         entityManager = HibernateUtil.getInstance().createEntityManager();

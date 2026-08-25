@@ -12,7 +12,7 @@ import java.util.List;
 
 public class InstructorDao implements LearnHubDao<Instructor> {
     // Connection o Persistence Unit
-    private final EntityManager entityManager;
+    protected final EntityManager entityManager;
 
     public InstructorDao() {
         entityManager = HibernateUtil.getInstance().createEntityManager();

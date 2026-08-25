@@ -7,7 +7,7 @@ import mx.dgtic.utils.HibernateUtil;
 import java.util.List;
 
 public class LevelDao implements LearnHubDao<Level> {
-    private EntityManager entityManager;
+    protected EntityManager entityManager;
 
     public LevelDao() {
         entityManager = HibernateUtil.getInstance().createEntityManager();

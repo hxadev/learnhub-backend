@@ -22,7 +22,12 @@ import java.util.List;
         @NamedQuery(name = "Category.getTotalCategories", query = "SELECT COUNT(c) FROM Category c"),
         @NamedQuery(name = "Category.getActiveCategories", query = "SELECT COUNT(c) FROM Category c WHERE c.active = true"),
 })
+@Builder
 public class Category {
+    public Category(int id) {
+        this.id = id;
+    }
+
     // atributos encapsulados
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

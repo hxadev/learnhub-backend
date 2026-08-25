@@ -2,6 +2,7 @@ package mx.dgtic.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -16,7 +17,13 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class Level {
+
+    public Level(int id) {
+        this.id = id;
+    }
+
     // atributos encapsulados
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

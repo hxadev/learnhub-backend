@@ -9,7 +9,7 @@ import mx.dgtic.utils.HibernateUtil;
 import java.util.List;
 
 public class StudentDao implements LearnHubDao<Student> {
-    private EntityManager em;
+    protected EntityManager em;
 
     public StudentDao() {
         em = HibernateUtil.getInstance().createEntityManager();

@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import mx.dgtic.utils.EnrollmentStatus;
 
 import java.math.BigDecimal;
 import java.util.Date;
@@ -19,13 +20,6 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Enrollment {
-
-    public enum EnrollmentStatus {
-        ENROLLED,
-        IN_PROGRESS,
-        COMPLETED,
-        DROPPED
-    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -1,57 +1,28 @@
 package mx.dgtic;
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 
+import mx.dgtic.config.ApplicationConfig;
+import org.glassfish.grizzly.http.server.HttpServer;
+import org.glassfish.jersey.grizzly2.httpserver.GrizzlyHttpServerFactory;
 
-import mx.dgtic.dao.*;
-import mx.dgtic.entity.Category;
-import mx.dgtic.entity.Course;
-import mx.dgtic.entity.Instructor;
-import mx.dgtic.entity.Student;
-import mx.dgtic.repository.CategoryRepository;
-import mx.dgtic.repository.CourseRepository;
-
-import java.util.Date;
-import java.util.List;
+import java.net.URI;
 
 public class Main {
-    public static void main(String[] args) {
-
-        CourseRepository courseRepository = new CourseRepository();
-
-        var coursesByCategory = courseRepository.findByCategoryName("Programacion");
-
-        coursesByCategory.size();
-
-        var categoryDao = new CategoryRepository();
-        var activeCategories = categoryDao.getActiveCategories();
-
-        System.out.println("El total de categorias activas es: " + activeCategories);
-
-        var totalCategories = categoryDao.getTotalCategories();
-        System.out.println("El total de categorias es: " + totalCategories);
-
-
-        //CourseDao courseDao = new CourseDao();
-        //var miCurso = courseDao.findCourseTitleById(1);
-
-        // System.out.println("Curso: " + miCurso.getTitle());
-    }
-
-    /*private static void crudCategory(){
-        // CRUD Category
-        CategoryDao categoryDao = new CategoryDao();
-        Category category = categoryDao.findById(1);
-        System.out.println("Name: " + category.getName() + " , Id " + category.getId());
-    }
-    private static void crudStudent(){
-        // CRUD Students
-        StudentDao studentDao = new StudentDao();
-        List<Student> students = studentDao.findAll();
-        for (Student student : students) {
-            System.out.println("Name: " + student.getFirstName() + " , Id " + student.getId());
+    public static void main(String[] args)  {
+        try {
+            runServer();
+        }catch (Exception e){
+            e.printStackTrace();
         }
     }
-    private static void crudInstructor(){}
-    private static void crudLevel(){}*/
+
+    private static void runServer() throws InterruptedException {
+        ApplicationConfig config = new ApplicationConfig();
+        URI uri = URI.create("http://localhost:8080/api/");
+        HttpServer server = GrizzlyHttpServerFactory.createHttpServer(uri, config);
+
+        System.out.println("Servidor corriendo en " + uri);
+        Runtime.getRuntime().addShutdownHook(new Thread(server::shutdownNow));
+
+        Thread.currentThread().join();
+    }
 }
