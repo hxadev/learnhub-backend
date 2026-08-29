@@ -77,6 +77,35 @@
             <scope>test</scope>
         </dependency>
 
+        <!-- Enable JAX-RS Support and API -->
+        <!-- jax-rs-api is the Jakarta RESTful Web Services API, which provides the necessary interfaces and annotations for building RESTful web services in Java. -->
+        <dependency>
+            <groupId>jakarta.ws.rs</groupId>
+            <artifactId>jakarta.ws.rs-api</artifactId>
+            <version>3.1.0</version>
+        </dependency>
+
+        <!-- Jersey is a popular implementation of the JAX-RS specification. It provides the necessary runtime environment to deploy and run RESTful web services. -->
+        <dependency>
+            <groupId>org.glassfish.jersey.containers</groupId>
+            <artifactId>jersey-container-grizzly2-http</artifactId>
+            <version>3.1.6</version>
+        </dependency>
+
+        <!-- Jersey HK2 is a dependency injection framework used by Jersey to manage the lifecycle of resources and provide dependency injection capabilities. -->
+        <dependency>
+            <groupId>org.glassfish.jersey.inject</groupId>
+            <artifactId>jersey-hk2</artifactId>
+            <version>3.1.6</version>
+        </dependency>
+
+        <!-- Jersey Media JSON Jackson is a module that enables JSON serialization and deserialization using the Jackson library. It allows you to easily convert Java objects to JSON and vice versa. -->
+        <dependency>
+            <groupId>org.glassfish.jersey.media</groupId>
+            <artifactId>jersey-media-json-jackson</artifactId>
+            <version>3.1.6</version>
+        </dependency>
+
     </dependencies>
 
     <build>

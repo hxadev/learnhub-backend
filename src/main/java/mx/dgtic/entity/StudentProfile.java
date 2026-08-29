@@ -45,7 +45,7 @@ public class StudentProfile {
     @Column(name = "github_url",  nullable = true, length = 255)
     private String githubUrl;
 
-    @Column(length = 4)
+    @Column(length = 4, name = "preferred_language")
     private char preferredLanguage;
 
     @OneToOne(mappedBy="studentProfile")

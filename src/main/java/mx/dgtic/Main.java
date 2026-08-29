@@ -3,65 +3,49 @@ package mx.dgtic;
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 
 
+import mx.dgtic.config.ApplicationConfig;
 import mx.dgtic.dao.*;
-import mx.dgtic.entity.Category;
-import mx.dgtic.entity.Course;
-import mx.dgtic.entity.Instructor;
-import mx.dgtic.entity.Student;
-import mx.dgtic.repository.CategoryRepository;
-import mx.dgtic.repository.CourseRepository;
+import org.glassfish.grizzly.http.server.HttpServer;
+import org.glassfish.jersey.grizzly2.httpserver.GrizzlyHttpServerFactory;
 
-import java.util.Date;
-import java.util.List;
+import java.net.URI;
 
 public class Main {
+                // Application Program Interface = API = Exposicion a red
+    private static final String BASE_URI = "http://localhost:8080/api/";
+
     public static void main(String[] args) {
-
-        CourseRepository courseRepository = new CourseRepository();
-
-        try{
-            Course miCourse=new Course();
-            miCourse.setTitle("Curso de PL/SQL");
-            miCourse.setDescription("");
-
-            courseRepository.insert(miCourse);
-        }catch(Exception ex){
-            System.out.println(ex.getMessage());
-            ex.printStackTrace();
-        }
-
-
-
-        /*CourseRepository courseRepository = new CourseRepository();
-        var coursesByCategory = courseRepository.findByCategoryName("Programacion");
-        coursesByCategory.size();
-        var categoryDao = new CategoryRepository();
-        var activeCategories = categoryDao.getActiveCategories();
-        System.out.println("El total de categorias activas es: " + activeCategories);
-        var totalCategories = categoryDao.getTotalCategories();
-        System.out.println("El total de categorias es: " + totalCategories);*/
-
-
-        //CourseDao courseDao = new CourseDao();
-        //var miCurso = courseDao.findCourseTitleById(1);
-
-        // System.out.println("Curso: " + miCurso.getTitle());
-    }
-
-    /*private static void crudCategory(){
-        // CRUD Category
-        CategoryDao categoryDao = new CategoryDao();
-        Category category = categoryDao.findById(1);
-        System.out.println("Name: " + category.getName() + " , Id " + category.getId());
-    }
-    private static void crudStudent(){
-        // CRUD Students
-        StudentDao studentDao = new StudentDao();
-        List<Student> students = studentDao.findAll();
-        for (Student student : students) {
-            System.out.println("Name: " + student.getFirstName() + " , Id " + student.getId());
+        try {
+            runServer();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
-    private static void crudInstructor(){}
-    private static void crudLevel(){}*/
+
+    private static void runServer() throws InterruptedException {
+        final ApplicationConfig config = new ApplicationConfig();
+        final URI uri = URI.create(BASE_URI);
+        final HttpServer server = GrizzlyHttpServerFactory.createHttpServer(uri, config);
+
+        System.out.println("\n══════════════════════════════════════════");
+        System.out.println("  🎓 LearnHub BackEnd API v1.0");
+        System.out.println("-->" + BASE_URI);
+        System.out.println("══════════════════════════════════════════");
+        System.out.println("  GET  /courses | /courses/{id} | /courses/category/{name}");
+        System.out.println("  GET  /courses/top-popular?limit=5 | /courses/stats");
+        System.out.println("  GET  /students | /students/{id}/enrollments");
+        System.out.println("  GET  /enrollments/course/{id} | /enrollments/stats");
+        System.out.println("  GET  /instructors | /instructors/revenue");
+        System.out.println("  GET  /categories");
+        System.out.println("  POST /enrollments?studentId=STU-001&courseId=3");
+        System.out.println("══════════════════════════════════════════");
+        try {
+            System.in.read();
+        } catch (Exception ignored) {
+        }
+
+        Runtime.getRuntime().addShutdownHook(new Thread(server::shutdownNow));
+
+        Thread.currentThread().join();
+    }
 }

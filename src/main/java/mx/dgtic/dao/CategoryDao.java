@@ -33,6 +33,8 @@ public class CategoryDao implements LearnHubDao<Category> {
                 tx.rollback();
             }
             throw ex;
+        }finally {
+            entityManager.close();
         }
         // Session End
     }

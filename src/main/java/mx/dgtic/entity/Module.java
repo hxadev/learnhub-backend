@@ -30,8 +30,6 @@ public class Module {
     @Column
     private Integer duration;
 
-    @Column
-    private boolean active;
 
     /**
      * Relacion Many To One
