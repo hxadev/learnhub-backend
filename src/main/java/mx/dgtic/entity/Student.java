@@ -1,6 +1,7 @@
 package mx.dgtic.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -8,6 +9,17 @@ import lombok.Setter;
 
 import java.util.Date;
 import java.util.List;
+
+/*
+Student debe de tener un Perfil
+El perfil debe de contener las redes sociales
+y informacion de social del estudiante
+
+El perfil se llamara
+
+Student 1..1 StudentProfile
+
+ */
 
 @Entity
 @Table(name="students")
@@ -26,6 +38,7 @@ public class Student {
     @Column(name = "last_name")
     private String lastName;
 
+    @Email
     @Column(name = "email", unique = true)
     private String email;
 
@@ -46,6 +59,10 @@ public class Student {
 
     @OneToMany(mappedBy = "student")
     private List<Enrollment> enrollments;
+
+    @OneToOne
+    @JoinColumn(name="student_profile_id")
+    private StudentProfile studentProfile;
 
 
 

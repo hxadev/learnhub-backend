@@ -19,17 +19,27 @@ public class Main {
 
         CourseRepository courseRepository = new CourseRepository();
 
+        try{
+            Course miCourse=new Course();
+            miCourse.setTitle("Curso de PL/SQL");
+            miCourse.setDescription("");
+
+            courseRepository.insert(miCourse);
+        }catch(Exception ex){
+            System.out.println(ex.getMessage());
+            ex.printStackTrace();
+        }
+
+
+
+        /*CourseRepository courseRepository = new CourseRepository();
         var coursesByCategory = courseRepository.findByCategoryName("Programacion");
-
         coursesByCategory.size();
-
         var categoryDao = new CategoryRepository();
         var activeCategories = categoryDao.getActiveCategories();
-
         System.out.println("El total de categorias activas es: " + activeCategories);
-
         var totalCategories = categoryDao.getTotalCategories();
-        System.out.println("El total de categorias es: " + totalCategories);
+        System.out.println("El total de categorias es: " + totalCategories);*/
 
 
         //CourseDao courseDao = new CourseDao();

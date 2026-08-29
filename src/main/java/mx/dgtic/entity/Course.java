@@ -1,6 +1,10 @@
 package mx.dgtic.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
 import java.math.BigDecimal;
@@ -31,9 +35,13 @@ public class Course {
     @Column(nullable = false, length = 200)
     private String title;
 
+    @NotBlank(message="El campo descripcion es obligatorio y no puede ir vacio")
     @Column(columnDefinition = "TEXT")
     private String description;
 
+    @NotNull
+    @Min(value = 0, message = "El precio debe de ser mayor que cero")
+    @Max(value = 1000000, message = "El precio debe de ser menor que 1,000,000")
     @Column(precision = 38, scale = 2)
     private BigDecimal price;
 
